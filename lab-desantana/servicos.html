@@ -3,42 +3,230 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Conheça todos os serviços contábeis da Expertise Contabilidade: fiscal, tributário, folha de pagamento, abertura de empresa e muito mais." />
-  <title>Serviços | Expertise Contabilidade</title>
+  <meta name="description" content="Conheça todos os exames do Laboratório De Sant'Anna: Hemograma, Glicose, Colesterol, HIV, COVID, DNA, Toxicológico e muito mais. Coleta em domicílio disponível." />
+  <title>Exames e Serviços | Laboratório De Sant'Anna - Medicina Diagnóstica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --green-900: #064e3b; --green-800: #065f46; --green-700: #047857;
+      --green-600: #059669; --green-500: #10b981; --green-400: #34d399;
+      --green-100: #d1fae5; --green-50: #ecfdf5; --white: #ffffff;
+      --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
+      --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937;
+    }
+    body { font-family: 'Open Sans', sans-serif; color: var(--gray-700); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 16px 0; transition: all .3s;
+      background: rgba(6,78,59,.95); backdrop-filter: blur(10px);
+    }
+    .navbar.scrolled { padding: 10px 0; box-shadow: 0 2px 20px rgba(0,0,0,.15); }
+    .navbar .container { display: flex; align-items: center; justify-content: space-between; }
+    .navbar-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--white);
+    }
+    .navbar-brand .logo-icon {
+      width: 40px; height: 40px; background: var(--green-500);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    }
+    .navbar-brand .logo-icon svg { width: 22px; height: 22px; }
+    .navbar-brand span { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; }
+    .navbar-brand small { display: block; font-size: .65rem; opacity: .7; letter-spacing: 1.5px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { color: rgba(255,255,255,.85); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all .3s; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+    /* MOBILE MENU */
+    .mobile-menu {
+      position: fixed; top: 72px; left: 0; right: 0; z-index: 999;
+      background: var(--white); padding: 20px 24px; display: none;
+      flex-direction: column; gap: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.1); border-bottom: 3px solid var(--green-500);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 1rem; color: var(--gray-700); padding: 8px 0; text-decoration: none; }
+
+    /* PAGE HERO */
+    .page-hero {
+      background: linear-gradient(135deg, var(--green-900) 0%, var(--green-700) 100%);
+      padding: 140px 0 60px; text-align: center; color: var(--white);
+    }
+    .page-hero h1 { font-size: 2.4rem; margin-bottom: 12px; }
+    .page-hero p { font-size: 1.1rem; opacity: .85; max-width: 600px; margin: 0 auto; }
+
+    /* SERVICES GRID */
+    .services-section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section-header h2 { font-size: 1.8rem; color: var(--green-800); margin-bottom: 12px; }
+    .section-header p { color: var(--gray-600); max-width: 600px; margin: 0 auto; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .service-box {
+      background: var(--white); border-radius: 16px; padding: 32px;
+      border: 1px solid var(--gray-200); transition: transform .3s, box-shadow .3s;
+    }
+    .service-box:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,.08); }
+    .service-icon {
+      width: 56px; height: 56px; background: var(--green-50); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 16px;
+    }
+    .service-box h3 { font-size: 1.1rem; color: var(--green-800); margin-bottom: 8px; }
+    .service-box p { font-size: .9rem; color: var(--gray-600); line-height: 1.6; margin-bottom: 12px; }
+    .service-tag {
+      display: inline-block; background: var(--green-50); color: var(--green-700);
+      padding: 4px 12px; border-radius: 20px; font-size: .75rem; font-weight: 600;
+    }
+
+    /* COLETA DOMICILIO */
+    .domicilio-section {
+      padding: 80px 0; background: var(--gray-50);
+    }
+    .domicilio-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .domicilio-content h2 { font-size: 1.8rem; color: var(--green-800); margin-bottom: 16px; }
+    .domicilio-content p { color: var(--gray-600); line-height: 1.7; margin-bottom: 24px; }
+    .domicilio-steps { display: flex; flex-direction: column; gap: 20px; }
+    .step { display: flex; gap: 16px; align-items: flex-start; }
+    .step-num {
+      width: 36px; height: 36px; background: var(--green-500); color: var(--white);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .9rem; flex-shrink: 0;
+    }
+    .step-text strong { display: block; font-family: 'Montserrat', sans-serif; font-size: .95rem; color: var(--gray-800); margin-bottom: 2px; }
+    .step-text span { font-size: .85rem; color: var(--gray-600); }
+    .domicilio-card {
+      background: linear-gradient(135deg, var(--green-700), var(--green-500));
+      border-radius: 20px; padding: 48px 36px; color: var(--white); text-align: center;
+    }
+    .domicilio-card h3 { font-size: 1.5rem; margin-bottom: 16px; }
+    .domicilio-card p { opacity: .85; margin-bottom: 28px; line-height: 1.6; }
+    .domicilio-card .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white); color: var(--green-800); padding: 14px 28px;
+      border-radius: 10px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .95rem; text-decoration: none; transition: transform .2s;
+    }
+    .domicilio-card .btn-whatsapp:hover { transform: translateY(-2px); }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--green-800) 0%, var(--green-600) 100%);
+      padding: 60px 0; text-align: center; color: var(--white);
+    }
+    .cta-section h2 { font-size: 1.8rem; margin-bottom: 12px; }
+    .cta-section p { opacity: .85; margin-bottom: 28px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--white); color: var(--green-800); border: none; padding: 14px 32px;
+      border-radius: 10px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .95rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: background .3s;
+    }
+    .btn-primary:hover { background: var(--green-50); }
+    .btn-outline-light {
+      border: 2px solid rgba(255,255,255,.4); color: var(--white); padding: 14px 32px;
+      border-radius: 10px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .95rem; text-decoration: none; transition: all .3s; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline-light:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.6); }
+
+    /* FOOTER */
+    .footer { background: var(--green-900); color: rgba(255,255,255,.75); padding: 60px 0 0; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+    .footer h4 { font-size: .85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--green-400); margin-bottom: 16px; }
+    .footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer ul a { color: rgba(255,255,255,.7); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .footer ul a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1); padding: 20px 0;
+      font-size: .82rem; text-align: center; opacity: .6;
+    }
+
+    /* WHATSAPP FLOAT */
+    .whatsapp-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      width: 56px; height: 56px; background: #25d366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(37,211,102,.4); transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+
+    @media (max-width: 992px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .domicilio-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .page-hero h1 { font-size: 1.8rem; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo">
-        <div class="logo-icon">E</div>
-        <div class="logo-text">
-          <span class="logo-name">Expertise</span>
-          <span class="logo-tagline">Contabilidade</span>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <div>
+          <span>De Sant'Anna</span>
+          <small>MEDICINA DIAGNOSTICA</small>
         </div>
       </a>
-
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Inicio</a>
+        <a href="servicos.html" style="color:var(--white)">Exames</a>
+        <a href="index.html#horarios">Horarios</a>
+        <a href="contato.html">Contato</a>
+        <a href="https://www.dsmedlab.com.br" target="_blank" style="background:var(--green-500);color:#fff;padding:8px 18px;border-radius:8px;font-weight:600">Resultados</a>
+        <a href="https://wa.me/5521968459159" target="_blank" style="background:rgba(255,255,255,.15);padding:8px 18px;border-radius:8px;font-weight:600;color:var(--white)">WhatsApp</a>
+      </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
-
-      <nav class="nav" id="nav">
-        <a href="index.html">Início</a>
-        <a href="servicos.html" class="active">Serviços</a>
-        <a href="contato.html">Contato</a>
-        <a href="contato.html" class="btn-cta">Falar com Especialista</a>
-      </nav>
     </div>
-  </header>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobile()">Inicio</a>
+    <a href="servicos.html" onclick="closeMobile()">Exames</a>
+    <a href="index.html#horarios" onclick="closeMobile()">Horarios</a>
+    <a href="contato.html" onclick="closeMobile()">Contato</a>
+    <a href="https://www.dsmedlab.com.br" target="_blank" onclick="closeMobile()" style="background:var(--green-500);color:#fff;padding:12px 24px;border-radius:10px;font-weight:600;text-align:center">Resultados de Exames</a>
+    <a href="https://wa.me/5521968459159" target="_blank" style="background:#25d366;color:#fff;padding:12px 24px;border-radius:10px;font-weight:600;text-align:center">WhatsApp</a>
+  </div>
 
   <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="container">
-      <span class="tag">Soluções Completas</span>
-      <h1>Nossos Serviços</h1>
-      <p>Tudo que sua empresa precisa em um único escritório contábil — do MEI à S.A.</p>
+      <h1>Nossos Exames e Servicos</h1>
+      <p>Oferecemos uma ampla variedade de exames laboratoriais com tecnologia de ponta, resultados precisos e coleta em domicilio.</p>
     </div>
   </section>
 
@@ -46,226 +234,157 @@
   <section class="services-section">
     <div class="container">
       <div class="section-header">
-        <span class="tag">Áreas de Atuação</span>
-        <h2 class="section-title">Soluções para cada necessidade</h2>
-        <p class="section-subtitle">
-          Oferecemos um portfólio completo de serviços contábeis com qualidade, agilidade e segurança.
-        </p>
+        <h2>Exames Disponiveis</h2>
+        <p>Realizamos mais de 12 tipos de exames com 100% de precisao nos resultados.</p>
       </div>
 
       <div class="services-grid">
 
         <div class="service-box">
-          <div class="icon">📊</div>
-          <h3>Contabilidade Geral</h3>
-          <p>Escrituração contábil completa com geração de relatórios gerenciais e demonstrações financeiras para tomada de decisões estratégicas.</p>
-          <ul>
-            <li>Escrituração e lançamentos contábeis</li>
-            <li>Balanço Patrimonial e DRE</li>
-            <li>Demonstração de Fluxo de Caixa</li>
-            <li>SPED Contábil (ECD)</li>
-            <li>Parecer e laudo contábil</li>
-          </ul>
+          <div class="service-icon">🩸</div>
+          <h3>Hemograma</h3>
+          <p>Exame de sangue completo que avalia globulos vermelhos, brancos e plaquetas. Essencial para diagnostico de anemias, infeccoes e outras condicoes.</p>
+          <span class="service-tag">Resultado rapido</span>
         </div>
 
         <div class="service-box">
-          <div class="icon">🧾</div>
-          <h3>Obrigações Acessórias</h3>
-          <p>Entrega de todas as obrigações fiscais, contábeis e previdenciárias dentro dos prazos legais, evitando multas e autuações.</p>
-          <ul>
-            <li>SPED Fiscal (EFD ICMS/IPI)</li>
-            <li>DCTF, ECF e ECD</li>
-            <li>PGDAS-D (Simples Nacional)</li>
-            <li>DEFIS e DIRF</li>
-            <li>GIA e DAPI estadual</li>
-          </ul>
+          <div class="service-icon">🍬</div>
+          <h3>Glicose</h3>
+          <p>Mede o nivel de acucar no sangue. Fundamental para diagnostico e acompanhamento de diabetes e pre-diabetes.</p>
+          <span class="service-tag">Jejum necessario</span>
         </div>
 
         <div class="service-box">
-          <div class="icon">💰</div>
-          <h3>Planejamento Tributário</h3>
-          <p>Análise criteriosa do melhor enquadramento tributário para sua empresa, reduzindo legalmente a carga de impostos e otimizando resultados.</p>
-          <ul>
-            <li>Análise de regime tributário</li>
-            <li>Simples Nacional, LP e LR</li>
-            <li>Recuperação de créditos fiscais</li>
-            <li>Redução de IRPJ/CSLL</li>
-            <li>Elisão fiscal estratégica</li>
-          </ul>
+          <div class="service-icon">❤️</div>
+          <h3>Colesterol</h3>
+          <p>Avalia os niveis de colesterol total, HDL, LDL e VLDL. Importante para prevencao de doencas cardiovasculares.</p>
+          <span class="service-tag">Jejum necessario</span>
         </div>
 
         <div class="service-box">
-          <div class="icon">👥</div>
-          <h3>Departamento Pessoal</h3>
-          <p>Gestão completa dos processos trabalhistas e previdenciários, garantindo compliance com a legislação vigente.</p>
-          <ul>
-            <li>Folha de pagamento mensal</li>
-            <li>Admissões e demissões</li>
-            <li>FGTS, INSS e IRRF</li>
-            <li>eSocial e EFD-Reinf</li>
-            <li>Férias, 13º e rescisões</li>
-          </ul>
+          <div class="service-icon">📊</div>
+          <h3>Triglicerideos</h3>
+          <p>Mede a gordura no sangue relacionada ao risco de doencas cardiacas. Geralmente solicitado junto com o perfil lipidico.</p>
+          <span class="service-tag">Jejum necessario</span>
         </div>
 
         <div class="service-box">
-          <div class="icon">🏢</div>
-          <h3>Abertura e Encerramento</h3>
-          <p>Assessoria completa em todos os processos de constituição, alteração societária ou encerramento de empresas.</p>
-          <ul>
-            <li>Abertura de CNPJ e MEI</li>
-            <li>Alvará e licenças municipais</li>
-            <li>Alteração de contrato social</li>
-            <li>Transformação societária</li>
-            <li>Encerramento e distrato</li>
-          </ul>
+          <div class="service-icon">🤰</div>
+          <h3>Teste de Gravidez</h3>
+          <p>Exame de sangue (Beta HCG) com alta sensibilidade para deteccao precoce de gravidez. Mais preciso que testes de farmacia.</p>
+          <span class="service-tag">Sem jejum</span>
         </div>
 
         <div class="service-box">
-          <div class="icon">📈</div>
-          <h3>Consultoria Financeira</h3>
-          <p>Análise e orientação estratégica para melhorar o desempenho financeiro e a saúde econômica do seu negócio.</p>
-          <ul>
-            <li>Fluxo de caixa e DFC</li>
-            <li>Análise de indicadores</li>
-            <li>Custos e precificação</li>
-            <li>Capital de giro</li>
-            <li>Plano de negócios</li>
-          </ul>
+          <div class="service-icon">🧪</div>
+          <h3>Fezes e Urina</h3>
+          <p>Analise laboratorial de amostras de fezes e urina para diagnostico de infeccoes, parasitas e alteracoes renais ou urinarias.</p>
+          <span class="service-tag">Coleta simples</span>
         </div>
 
         <div class="service-box">
-          <div class="icon">🔍</div>
-          <h3>Auditoria Interna</h3>
-          <p>Revisão independente dos processos contábeis e controles internos para garantir conformidade e identificar riscos.</p>
-          <ul>
-            <li>Auditoria de balanços</li>
-            <li>Due diligence contábil</li>
-            <li>Revisão de processos</li>
-            <li>Controles internos</li>
-            <li>Relatório de conformidade</li>
-          </ul>
+          <div class="service-icon">🛡️</div>
+          <h3>HIV</h3>
+          <p>Teste para deteccao do virus HIV com alta precisao e confidencialidade total. Resultado rapido e seguro.</p>
+          <span class="service-tag">Sem jejum</span>
         </div>
 
         <div class="service-box">
-          <div class="icon">🌐</div>
-          <h3>Comércio Exterior</h3>
-          <p>Suporte fiscal e aduaneiro para empresas que operam com importação e exportação de bens e serviços.</p>
-          <ul>
-            <li>Classificação fiscal NCM</li>
-            <li>RADAR SISCOMEX</li>
-            <li>Drawback e regimes especiais</li>
-            <li>PERD/COMP e PIS/COFINS</li>
-            <li>Câmbio e remessas</li>
-          </ul>
+          <div class="service-icon">🔬</div>
+          <h3>Hepatite</h3>
+          <p>Exames para deteccao de Hepatite A, B e C. Importante para diagnostico precoce e acompanhamento do tratamento.</p>
+          <span class="service-tag">Sem jejum</span>
         </div>
 
         <div class="service-box">
-          <div class="icon">🛡️</div>
-          <h3>Defesa Fiscal e Tributária</h3>
-          <p>Representação e defesa perante os fiscos federal, estadual e municipal em processos de autuação e parcelamentos.</p>
-          <ul>
-            <li>Impugnações e recursos</li>
-            <li>CARF e tribunais administrativos</li>
-            <li>Parcelamentos PERT/REFIS</li>
-            <li>Certidões negativas</li>
-            <li>Regularização de débitos</li>
-          </ul>
+          <div class="service-icon">🦠</div>
+          <h3>COVID-19</h3>
+          <p>Testes para deteccao do virus SARS-CoV-2. Disponibilizamos diferentes metodologias para sua necessidade.</p>
+          <span class="service-tag">Resultado rapido</span>
+        </div>
+
+        <div class="service-box">
+          <div class="service-icon">⚗️</div>
+          <h3>Toxicologico</h3>
+          <p>Exame toxicologico para deteccao de substancias. Aceito para fins de habilitacao (CNH), admissao e demissao.</p>
+          <span class="service-tag">Laudo oficial</span>
+        </div>
+
+        <div class="service-box">
+          <div class="service-icon">👶</div>
+          <h3>Sexagem Fetal</h3>
+          <p>Descubra o sexo do bebe a partir de 8 semanas de gestacao, por meio de um simples exame de sangue da mae.</p>
+          <span class="service-tag">A partir de 8 semanas</span>
+        </div>
+
+        <div class="service-box">
+          <div class="service-icon">🧬</div>
+          <h3>DNA / Paternidade</h3>
+          <p>Teste de DNA para comprovacao de paternidade e outros vinculos biologicos. Resultado com validade juridica.</p>
+          <span class="service-tag">Validade juridica</span>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- PLANS -->
-  <section class="plans-section" id="planos">
+  <!-- COLETA DOMICILIO -->
+  <section class="domicilio-section">
     <div class="container">
-      <div class="section-header">
-        <span class="tag">Planos e Preços</span>
-        <h2 class="section-title">Transparência total nos valores</h2>
-        <p class="section-subtitle">
-          Escolha o plano ideal para o porte e necessidade da sua empresa.
-        </p>
+      <div class="domicilio-inner">
+        <div class="domicilio-content">
+          <h2>Coleta em Domicilio</h2>
+          <p>Voce nao precisa sair de casa para fazer seus exames. Nossa equipe vai ate voce com todo conforto, seguranca e praticidade.</p>
+          <div class="domicilio-steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-text">
+                <strong>Agende pelo WhatsApp</strong>
+                <span>Entre em contato e informe o exame desejado</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-text">
+                <strong>Combine o horario</strong>
+                <span>Escolha o melhor dia e horario para a coleta</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-text">
+                <strong>Receba em casa</strong>
+                <span>Nossa equipe vai ate voce para realizar a coleta</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-text">
+                <strong>Resultados online</strong>
+                <span>Acesse seus resultados em <a href="https://www.dsmedlab.com.br" target="_blank" style="color:var(--green-600);font-weight:600">www.dsmedlab.com.br</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="domicilio-card">
+          <h3>Agende sua coleta agora!</h3>
+          <p>Praticidade e conforto para voce e sua familia. Atendemos em toda a regiao.</p>
+          <a href="https://wa.me/5521968459159?text=Ola! Gostaria de agendar uma coleta em domicilio." target="_blank" class="btn-whatsapp">
+            💬 Agendar pelo WhatsApp
+          </a>
+        </div>
       </div>
-
-      <div class="plans-grid">
-
-        <div class="plan-card">
-          <p class="plan-name">MEI / Micro</p>
-          <div class="plan-price">
-            <span class="currency">R$</span>
-            <span class="amount">199</span>
-            <span class="period">/mês</span>
-          </div>
-          <p class="plan-desc">Ideal para MEI e microempresas no início da jornada, com faturamento até R$ 360 mil/ano.</p>
-          <ul class="plan-features">
-            <li><span class="check">✓</span>Contabilidade completa</li>
-            <li><span class="check">✓</span>Obrigações acessórias</li>
-            <li><span class="check">✓</span>PGDAS-D (Simples)</li>
-            <li><span class="check">✓</span>Emissão de NFS-e</li>
-            <li><span class="check">✓</span>Suporte por e-mail</li>
-            <li><span class="check">✓</span>Portal do cliente</li>
-          </ul>
-          <a href="contato.html" class="plan-btn">Começar agora</a>
-        </div>
-
-        <div class="plan-card featured">
-          <span class="plan-badge">Mais popular</span>
-          <p class="plan-name">Pequena Empresa</p>
-          <div class="plan-price">
-            <span class="currency">R$</span>
-            <span class="amount">549</span>
-            <span class="period">/mês</span>
-          </div>
-          <p class="plan-desc">Para pequenas empresas em crescimento, faturamento até R$ 4,8 milhões/ano.</p>
-          <ul class="plan-features">
-            <li><span class="check">✓</span>Tudo do plano MEI</li>
-            <li><span class="check">✓</span>Folha de pagamento (até 10)</li>
-            <li><span class="check">✓</span>eSocial completo</li>
-            <li><span class="check">✓</span>Planejamento tributário</li>
-            <li><span class="check">✓</span>Contador exclusivo</li>
-            <li><span class="check">✓</span>WhatsApp prioritário</li>
-            <li><span class="check">✓</span>Reunião mensal</li>
-          </ul>
-          <a href="contato.html" class="plan-btn">Escolher plano</a>
-        </div>
-
-        <div class="plan-card">
-          <p class="plan-name">Média Empresa</p>
-          <div class="plan-price">
-            <span class="currency">R$</span>
-            <span class="amount">1.290</span>
-            <span class="period">/mês</span>
-          </div>
-          <p class="plan-desc">Para médias empresas com operações complexas, acima de R$ 4,8 milhões de faturamento.</p>
-          <ul class="plan-features">
-            <li><span class="check">✓</span>Tudo do plano Pequena</li>
-            <li><span class="check">✓</span>Folha de pagamento (até 50)</li>
-            <li><span class="check">✓</span>Auditoria interna trimestral</li>
-            <li><span class="check">✓</span>Consultoria financeira</li>
-            <li><span class="check">✓</span>Dashboard financeiro</li>
-            <li><span class="check">✓</span>Suporte 24/7</li>
-            <li><span class="check">✓</span>Reunião quinzenal</li>
-          </ul>
-          <a href="contato.html" class="plan-btn">Solicitar proposta</a>
-        </div>
-
-      </div>
-
-      <p style="text-align:center; margin-top: 28px; color: var(--gray); font-size: 0.85rem;">
-        * Valores sujeitos a análise. Empresas com necessidades especiais ou maior complexidade podem ter custos diferenciados.
-        <a href="contato.html" style="color: var(--gold); font-weight: 600;">Consulte-nos.</a>
-      </p>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta-section">
     <div class="container">
-      <h2>Não sabe qual plano escolher?</h2>
-      <p>Nossa equipe faz uma análise gratuita e indica a melhor solução para o seu negócio.</p>
+      <h2>Precisa de um exame?</h2>
+      <p>Agende agora pelo WhatsApp ou venha nos visitar. Atendemos de segunda a sabado.</p>
       <div class="cta-buttons">
-        <a href="contato.html" class="btn btn-primary">Análise Gratuita</a>
-        <a href="tel:1130000000" class="btn btn-outline">📞 (11) 3000-0000</a>
+        <a href="https://wa.me/5521968459159?text=Ola! Gostaria de agendar um exame." target="_blank" class="btn-primary">💬 Agendar Exame</a>
+        <a href="https://www.dsmedlab.com.br" target="_blank" class="btn-outline-light">📋 Ver Resultados</a>
       </div>
     </div>
   </section>
@@ -275,59 +394,66 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="logo">
-            <div class="logo-icon">E</div>
-            <div class="logo-text">
-              <span class="logo-name">Expertise</span>
-              <span class="logo-tagline">Contabilidade</span>
+          <a href="index.html" class="navbar-brand" style="color:var(--white);text-decoration:none">
+            <div class="logo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div>
+              <span style="color:var(--white)">De Sant'Anna</span>
+              <small style="color:rgba(255,255,255,.6)">MEDICINA DIAGNOSTICA</small>
             </div>
           </a>
-          <p>Mais de 20 anos cuidando da saúde financeira e fiscal das empresas com dedicação, ética e excelência.</p>
+          <p style="margin-top:16px">Laboratorio de analises clinicas comprometido com a precisao, qualidade e o cuidado com a saude de cada paciente.</p>
         </div>
-
-        <div class="footer-col">
-          <h4>Navegação</h4>
+        <div>
+          <h4>Links Rapidos</h4>
           <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="servicos.html">Serviços</a></li>
-            <li><a href="servicos.html#planos">Planos</a></li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicos.html">Exames</a></li>
+            <li><a href="index.html#horarios">Horarios</a></li>
             <li><a href="contato.html">Contato</a></li>
+            <li><a href="https://www.dsmedlab.com.br" target="_blank">Resultados</a></li>
           </ul>
         </div>
-
-        <div class="footer-col">
-          <h4>Serviços</h4>
-          <ul>
-            <li><a href="servicos.html">Contabilidade</a></li>
-            <li><a href="servicos.html">Fiscal</a></li>
-            <li><a href="servicos.html">Tributário</a></li>
-            <li><a href="servicos.html">Dep. Pessoal</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
+        <div>
           <h4>Contato</h4>
-          <ul class="footer-contact-list">
-            <li><span>📍</span><span>Av. Paulista, 1000 — São Paulo/SP</span></li>
-            <li><span>📞</span><span>(11) 3000-0000</span></li>
-            <li><span>✉️</span><span>contato@expertise.com.br</span></li>
-            <li><span>🕐</span><span>Seg–Sex: 8h–18h</span></li>
+          <ul>
+            <li><a href="https://wa.me/5521968459159" target="_blank">(21) 96845-9159</a></li>
+            <li><span style="opacity:.75">Estr. Linha de Austin, 140</span></li>
+            <li><span style="opacity:.75">Conj. Campinho, Rio de Janeiro</span></li>
+            <li><span style="opacity:.75">Seg-Sex: 8h-17h | Sab: 8h-12h</span></li>
           </ul>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <p>© 2025 Expertise Contabilidade. Todos os direitos reservados.</p>
-        <div class="footer-social">
-          <a href="#" title="Instagram">📷</a>
-          <a href="#" title="LinkedIn">💼</a>
-          <a href="#" title="WhatsApp">💬</a>
-          <a href="#" title="Facebook">🌐</a>
-        </div>
+        &copy; 2026 Laboratorio De Sant'Anna - Medicina Diagnostica. Todos os direitos reservados.
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/5521968459159?text=Ola! Gostaria de informacoes sobre exames." target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.616l4.529-1.47A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.39-1.59l-.386-.238-2.685.871.9-2.636-.263-.416A9.935 9.935 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+  </a>
+
+  <script>
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobile() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+    }
+  </script>
 </body>
 </html>

@@ -73,48 +73,45 @@
         /* ===== NAVBAR ===== */
         .navbar {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--gray-200);
-            transition: box-shadow .3s;
+            background: rgba(6,78,59,.95); backdrop-filter: blur(10px);
+            padding: 16px 0; transition: all .3s;
         }
-        .navbar.scrolled { box-shadow: var(--shadow-md); }
+        .navbar.scrolled { padding: 10px 0; box-shadow: 0 2px 20px rgba(0,0,0,.15); }
         .navbar .container {
             display: flex; align-items: center; justify-content: space-between;
-            height: 76px;
         }
-        .navbar-brand { display: flex; align-items: center; gap: 12px; }
+        .navbar-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--white); }
         .navbar-brand .logo-icon {
-            width: 44px; height: 44px; background: var(--green-600);
+            width: 44px; height: 44px; background: var(--green-500);
             border-radius: 10px; display: flex; align-items: center; justify-content: center;
         }
         .navbar-brand .logo-icon svg { width: 26px; height: 26px; }
         .navbar-brand span {
             font-family: 'Montserrat', sans-serif; font-weight: 700;
-            font-size: 1.15rem; color: var(--green-900); line-height: 1.2;
+            font-size: 1.15rem; color: var(--white); line-height: 1.2;
         }
         .navbar-brand small {
             display: block; font-size: .7rem; font-weight: 500;
-            color: var(--gray-600); letter-spacing: .5px;
+            color: rgba(255,255,255,.7); letter-spacing: .5px;
         }
 
-        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
         .nav-links a {
             font-family: 'Montserrat', sans-serif; font-weight: 500;
-            font-size: .9rem; color: var(--gray-700); position: relative;
-            transition: color .3s;
+            font-size: .9rem; color: rgba(255,255,255,.85); position: relative;
+            transition: color .3s; text-decoration: none;
         }
         .nav-links a::after {
             content: ''; position: absolute; bottom: -4px; left: 0; width: 0;
-            height: 2px; background: var(--green-500); transition: width .3s;
+            height: 2px; background: var(--green-400); transition: width .3s;
         }
-        .nav-links a:hover { color: var(--green-600); }
+        .nav-links a:hover { color: var(--white); }
         .nav-links a:hover::after { width: 100%; }
 
         .nav-cta {
-            background: var(--green-600); color: var(--white) !important;
-            padding: 10px 22px; border-radius: 50px; font-size: .85rem !important;
+            color: var(--white) !important;
+            padding: 10px 22px; border-radius: 8px; font-size: .85rem !important; font-weight: 600;
         }
-        .nav-cta:hover { background: var(--green-700); }
         .nav-cta::after { display: none !important; }
 
         .hamburger {
@@ -123,7 +120,7 @@
             align-items: center; gap: 5px;
         }
         .hamburger span {
-            display: block; width: 24px; height: 2.5px; background: var(--green-900);
+            display: block; width: 24px; height: 2.5px; background: var(--white);
             border-radius: 2px; transition: all .3s;
         }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
@@ -402,14 +399,14 @@
 
         /* ===== MOBILE NAV ===== */
         .mobile-menu {
-            display: none; position: fixed; top: 76px; left: 0; width: 100%;
-            background: var(--white); border-bottom: 1px solid var(--gray-200);
-            padding: 24px; box-shadow: var(--shadow-lg); z-index: 999;
+            display: none; position: fixed; top: 72px; left: 0; right: 0;
+            background: var(--white); padding: 20px 24px; z-index: 999;
+            box-shadow: 0 8px 30px rgba(0,0,0,.1); border-bottom: 3px solid var(--green-500);
         }
-        .mobile-menu.open { display: flex; flex-direction: column; gap: 16px; }
+        .mobile-menu.open { display: flex; flex-direction: column; gap: 12px; }
         .mobile-menu a {
             font-family: 'Montserrat', sans-serif; font-weight: 500;
-            font-size: 1rem; color: var(--gray-700); padding: 8px 0;
+            font-size: 1rem; color: var(--gray-700); padding: 8px 0; text-decoration: none;
         }
 
         /* ===== RESPONSIVE ===== */
